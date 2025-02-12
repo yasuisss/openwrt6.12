@@ -9,8 +9,8 @@
 - 项目大部分代码拉取自 [haiibo](https://github.com/haiibo/OpenWrt) 的 Openwrt 云编译项目
 - 固件默认管理地址：`192.168.100.1` 默认用户：`root` 默认密码：`password`
 - 提供适配于 ARMv8 电视盒子、Rockchip 平台以及 X86 平台设备的 OpenWrt 固件
-- ARMv8 盒子固件为 [Mini版](https://github.com/yasuis/OpenWrt/releases/tag/ARMv8_MINI) ，以科学上网为主，包含 [F大](https://github.com/unifreq/openwrt_packit) 发布的所有已适配的盒子固件
-- 固件集成的所有 ipk 插件全部打包在 Packages 文件中，可以在 [Releases](https://github.com/yasuis/OpenWrt/releases) 内进行下载
+- ARMv8 盒子固件为 [Mini版](https://github.com/yasuisss/openwrt6.12/releases/tag/ARMv8_MINI) ，以科学上网为主，包含 [F大](https://github.com/unifreq/openwrt_packit) 发布的所有已适配的盒子固件
+- 固件集成的所有 ipk 插件全部打包在 Packages 文件中，可以在 [Releases](https://github.com/yasuisss/openwrt6.12/releases) 内进行下载
 - 项目编译的固件插件为最新版本，最新版插件可能有 BUG，如果之前使用稳定则无需追新
 
 
@@ -29,9 +29,9 @@
 点击下表中 [![](https://img.shields.io/badge/下载-链接-blueviolet.svg?style=flat&logo=hack-the-box)](https://github.com/yasuis/op/releases) 即可跳转到该设备固件下载页面
 | 平台+设备名称 | 固件编译状态 | 配置文件 | 固件下载 |
 | :-------------: | :-------------: | :-------------: | :-------------: |
-| [![](https://img.shields.io/badge/OpenWrt-X86_64位-32C955.svg?logo=op)](https://github.com/yasuis/op/blob/main/.github/workflows/X86_64-OpenWrt.yml) | [![](https://github.com/yasuis/op/actions/workflows/X86_64-OpenWrt.yml/badge.svg)](https://github.com/yasuis/op/actions/workflows/X86_64-OpenWrt.yml) | [![](https://img.shields.io/badge/编译-配置-orange.svg?logo=apache-spark)](https://github.com/yasuis/op/blob/main/configs/x86_64.config) | [![](https://img.shields.io/badge/下载-链接-blueviolet.svg?logo=hack-the-box)](https://github.com/yasuis/op/releases/tag/X86_64) |
-| [![](https://img.shields.io/badge/OpenWrt-ARMv8_Mini-32C955.svg?logo=op)](https://github.com/yasuis/op/blob/main/.github/workflows/ARMv8-Mini-OpenWrt.yml) | [![](https://github.com/yasuis/op/actions/workflows/ARMv8-Mini-OpenWrt.yml/badge.svg)](https://github.com/yasuis/op/actions/workflows/ARMv8-Mini-OpenWrt.yml) | [![](https://img.shields.io/badge/编译-配置-orange.svg?logo=apache-spark)](https://github.com/yasuis/op/blob/main/configs/armv8-mini.config) | [![](https://img.shields.io/badge/下载-链接-blueviolet.svg?logo=hack-the-box)](https://github.com/yasuis/op/releases/tag/ARMv8_MINI) |
-| [![](https://img.shields.io/badge/OpenWrt-Rockchip_平台-32C955.svg?logo=op)](https://github.com/yasuis/op/blob/main/.github/workflows/Rockchip-OpenWrt.yml) | [![](https://github.com/yasuis/op/actions/workflows/Rockchip-OpenWrt.yml/badge.svg)](https://github.com/yasuis/op/actions/workflows/Rockchip-OpenWrt.yml) | [![](https://img.shields.io/badge/编译-配置-orange.svg?logo=apache-spark)](https://github.com/yasuis/op/blob/main/configs/rockchip.config) | [![](https://img.shields.io/badge/下载-链接-blueviolet.svg?logo=hack-the-box)](https://github.com/yasuis/Op/releases/tag/Rockchip) |
+| [![](https://img.shields.io/badge/OpenWrt-X86_64位-32C955.svg?logo=op)](https://github.com/yasuisss/openwrt6.12/blob/main/.github/workflows/X86_64-OpenWrt.yml) | [![](https://github.com/yasuisss/openwrt6.12/actions/workflows/X86_64-OpenWrt.yml/badge.svg)](https://github.com/yasuisss/openwrt6.12/actions/workflows/X86_64-OpenWrt.yml) | [![](https://img.shields.io/badge/编译-配置-orange.svg?logo=apache-spark)](https://github.com/yasuisss/openwrt6.12/blob/main/configs/x86_64.config) | [![](https://img.shields.io/badge/下载-链接-blueviolet.svg?logo=hack-the-box)](https://github.com/yasuisss/openwrt6.12/releases/tag/X86_64) |
+| [![](https://img.shields.io/badge/OpenWrt-ARMv8_Mini-32C955.svg?logo=op)](https://github.com/yasuisss/openwrt6.12/blob/main/.github/workflows/ARMv8-Mini-OpenWrt.yml) | [![](https://github.com/yasuisss/openwrt6.12/actions/workflows/ARMv8-Mini-OpenWrt.yml/badge.svg)](https://github.com/yasuisss/openwrt6.12/actions/workflows/ARMv8-Mini-OpenWrt.yml) | [![](https://img.shields.io/badge/编译-配置-orange.svg?logo=apache-spark)](https://github.com/yasuisss/openwrt6.12/blob/main/configs/armv8-mini.config) | [![](https://img.shields.io/badge/下载-链接-blueviolet.svg?logo=hack-the-box)](https://github.com/yasuisss/openwrt6.12/releases/tag/ARMv8_MINI) |
+| [![](https://img.shields.io/badge/OpenWrt-Rockchip_平台-32C955.svg?logo=op)](https://github.com/yasuisss/openwrt6.12/blob/main/.github/workflows/Rockchip-OpenWrt.yml) | [![](https://github.com/yasuisss/openwrt6.12/actions/workflows/Rockchip-OpenWrt.yml/badge.svg)](https://github.com/yasuisss/openwrt6.12/actions/workflows/Rockchip-OpenWrt.yml) | [![](https://img.shields.io/badge/编译-配置-orange.svg?logo=apache-spark)](https://github.com/yasuisss/openwrt6.12/blob/main/configs/rockchip.config) | [![](https://img.shields.io/badge/下载-链接-blueviolet.svg?logo=hack-the-box)](https://github.com/yasuisss/openwrt6.12/releases/tag/Rockchip) |
 
 
 
