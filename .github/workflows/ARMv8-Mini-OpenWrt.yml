@@ -35,6 +35,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
+    - name: Checkout
+      uses: actions/checkout@main
+
     - name: 释放磁盘空间
       uses: jlumbroso/free-disk-space@main
       with:
@@ -68,6 +71,7 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
+        docker rmi $(docker images -q)
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo -E apt-get -qq update
         sudo -E apt-get -qq full-upgrade
@@ -198,7 +202,7 @@ jobs:
         body: |
           **This is Temporary Firmware for Armvirt 64**
           ### 📒 固件信息
-          - 🚀 成品固件点击此处跳转➦[MINI](https://github.com/yasuisss/openwrt6.12/releases/tag/ARMv8_MINI)即可下载
+          - 🚀 成品固件点击此处跳转➦[MINI](https://yasuisss/openwrt6.12/releases/tag/ARMv8_MINI)即可下载
           - 💻 平台架构: ${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }} (精简版临时固件)
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
@@ -231,6 +235,7 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
+        docker rmi $(docker images -q)
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo -E apt-get -qq update
         sudo -E apt-get -qq full-upgrade
@@ -258,7 +263,7 @@ jobs:
         OPENWRT_ARMVIRT: openwrt/bin/targets/*/*/*rootfs.tar.gz
         PACKAGE_SOC: all
         WHOAMI: yasui
-        KERNEL_VERSION_NAME: 6.6.74
+        KERNEL_VERSION_NAME: 6.12.13
         KERNEL_AUTO_LATEST: true
         DISTRIB_REVISION: R${{ env.DATE1 }} by yasui
 
