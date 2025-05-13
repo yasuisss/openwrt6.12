@@ -136,6 +136,8 @@ jobs:
           sudo rm -rf ~/{.cargo,.dotnet,.rustup}
           sudo timedatectl set-timezone "${TZ}"
           sudo -E apt install clang
+          sudo -E apt install flex
+          sudo -E apt install bison
           sudo mkdir -p /workdir
           sudo chown $USER:$GROUPS /workdir
 
