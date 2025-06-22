@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 # 修改默认IP
@@ -25,7 +26,7 @@ rm -rf feeds/packages/lang/golang
 rm -rf feeds/packages/net/v2ray-geodata
 rm -rf feeds/luci/applications/luci-app-passwall
 rm -rf feeds/packages/net/chinadns-ng
-# rm -rf feeds/packages/net/ddns-go
+rm -rf feeds/packages/net/ddns-go
 rm -rf feeds/packages/net/xray-core
 rm -rf feeds/packages/net/sing-box
 
@@ -57,8 +58,6 @@ git clone --depth=1 https://github.com/fw876/helloworld.git package/helloworld
 # Themes
 git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config
-# git clone --depth=1 https://github.com/sbwml/luci-theme-argon.git package/luci-theme-argon
-# git clone --depth=1 https://github.com/sbwml/luci-app-argon-config.git package/luci-app-argon-config
 
 # 更改 Argon 主题背景
 cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
@@ -95,9 +94,6 @@ sed -i '$i uci set nlbwmon.@nlbwmon[0].refresh_interval=2s' package/lean/default
 sed -i '$i uci commit nlbwmon' package/lean/default-settings/files/zzz-default-settings
 chmod 755 package/luci-app-onliner/root/usr/share/onliner/setnlbw.sh
 
-# 友善uboot
-sed -i '/^UBOOT_TARGETS := rk3528-evb rk3588-evb/s/^/#/' package/boot/uboot-rk35xx/Makefile
-
 # x86 型号只显示 CPU 型号
 sed -i 's/${g}.*/${a}${b}${c}${d}${e}${f}${hydrid}/g' package/lean/autocore/files/x86/autocore
 
@@ -124,34 +120,11 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 # 取消主题默认设置
 find package/luci-theme-*/* -type f -name '*luci-theme-*' -print -exec sed -i '/set luci.main.mediaurlbase/d' {} \;
 
-# fstools
-rm -rf package/system/fstools
-git clone https://github.com/sbwml/package_system_fstools -b openwrt-24.10 package/system/fstools
-
-# util-linux
-rm -rf package/utils/util-linux
-git clone https://github.com/sbwml/package_utils_util-linux -b openwrt-24.10 package/utils/util-linux
-
-# nginx
-uci set nginx.global.uci_enable='true'
-uci del nginx._lan
-uci del nginx._redirect2ssl
-uci add nginx server
-uci rename nginx.@server[0]='_lan'
-uci set nginx._lan.server_name='_lan'
-uci add_list nginx._lan.listen='80 default_server'
-uci add_list nginx._lan.listen='[::]:80 default_server'
-#uci add_list nginx._lan.include='restrict_locally'
-uci add_list nginx._lan.include='conf.d/*.locations'
-uci set nginx._lan.access_log='off; # logd openwrt'
-uci commit nginx
-service nginx restart
-
 # 调整 Docker 到 服务 菜单
-# sed -i 's/"admin"/"admin", "services"/g' feeds/luci/applications/luci-app-dockerman/luasrc/controller/*.lua
-# sed -i 's/"admin"/"admin", "services"/g; s/admin\//admin\/services\//g' feeds/luci/applications/luci-app-dockerman/luasrc/model/cbi/dockerman/*.lua
-# sed -i 's/admin\//admin\/services\//g' feeds/luci/applications/luci-app-dockerman/luasrc/view/dockerman/*.htm
-# sed -i 's|admin\\|admin\\/services\\|g' feeds/luci/applications/luci-app-dockerman/luasrc/view/dockerman/container.htm
+sed -i 's/"admin"/"admin", "services"/g' feeds/luci/applications/luci-app-dockerman/luasrc/controller/*.lua
+sed -i 's/"admin"/"admin", "services"/g; s/admin\//admin\/services\//g' feeds/luci/applications/luci-app-dockerman/luasrc/model/cbi/dockerman/*.lua
+sed -i 's/admin\//admin\/services\//g' feeds/luci/applications/luci-app-dockerman/luasrc/view/dockerman/*.htm
+sed -i 's|admin\\|admin\\/services\\|g' feeds/luci/applications/luci-app-dockerman/luasrc/view/dockerman/container.htm
 
 # 调整 ZeroTier 到 服务 菜单
 # sed -i 's/vpn/services/g; s/VPN/Services/g' feeds/luci/applications/luci-app-zerotier/luasrc/controller/zerotier.lua
