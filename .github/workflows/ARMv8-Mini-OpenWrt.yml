@@ -259,9 +259,9 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
-          **This is Temporary Firmware for Armvirt 64**
+          **This is Temporary Firmware for Armsr 64**
           ### 📒 固件信息
-          - 🚀 成品固件点击此处跳转➦[MINI](https://github.com/yasuis/op/releases/tag/ARMv8_MINI)即可下载
+          - 🚀 成品固件点击此处跳转➦[MINI](https://github.com/yasuisss/openwrt6.12/releases/tag/ARMv8_MINI)即可下载
           - 💻 平台架构: ${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }} (精简版临时固件)
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
@@ -333,7 +333,7 @@ jobs:
     - name: Download ARMSR Firmware
       id: download
       run: |
-        FIRMWARE_PATH=workdir/openwrt/bin/targets/armsr/64
+        FIRMWARE_PATH=openwrt/bin/targets/armsr/64
         [ -d $FIRMWARE_PATH ] || mkdir -p $FIRMWARE_PATH
         cd $FIRMWARE_PATH
         wget -q $(curl -s "https://api.github.com/repos/$GITHUB_REPOSITORY/releases" | grep "$FIRMWARE_TAG.*rootfs.tar.gz" | awk -F '"' '{print $4}')
@@ -345,7 +345,7 @@ jobs:
       if: steps.download.outputs.status == 'success'
       uses: unifreq/openwrt_packit@master
       env:
-        OPENWRT_ARMSR: workdir/openwrt/bin/targets/*/*/*rootfs.tar.gz
+        OPENWRT_ARMSR: openwrt/output/*rootfs.tar.gz
         PACKAGE_SOC: all
         WHOAMI: yasui
         KERNEL_VERSION_NAME: 6.12.28
