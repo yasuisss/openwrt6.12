@@ -10,5 +10,5 @@ src-git helloworld https://github.com/fw876/helloworld;master
 #src-git routing https://github.com/coolsnowwolf/routing
 #src-git telephony https://github.com/coolsnowwolf/telephony.git
 
-src-git diskman https://github.com/jjm2473/luci-app-diskman.git;dev
-src-git oaf https://github.com/jjm2473/OpenAppFilter.git;dev6
+#src-git diskman https://github.com/jjm2473/luci-app-diskman.git;dev
+#src-git oaf https://github.com/jjm2473/OpenAppFilter.git;dev6
