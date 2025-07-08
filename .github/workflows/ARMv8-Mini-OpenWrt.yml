@@ -349,7 +349,7 @@ jobs:
       uses: unifreq/openwrt_packit@master
       if: ${{ steps.download.outputs.status }} == 'success' && !cancelled()
       env:
-        OPENWRT_ARMSR: openwrt/bin/targets/*/*/*rootfs.tar.gz
+        OPENWRT_ARMSR: workdir/openwrt/bin/targets/*/*/*rootfs.tar.gz
         PACKAGE_SOC: all
         WHOAMI: yasui
         KERNEL_VERSION_NAME: 6.12.29
