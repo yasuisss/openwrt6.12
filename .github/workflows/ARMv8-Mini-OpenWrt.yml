@@ -159,6 +159,7 @@ jobs:
         COMMIT_HASH=$(git show -s --date=short --format="hash: %H")
         echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV
         echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_OUTPUT
+        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Generate Variables
       id: variable
@@ -294,24 +295,6 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@main
-
-    - name: 释放磁盘空间
-      uses: jlumbroso/free-disk-space@main
-      with:
-        tool-cache: true
-        android: true
-        dotnet: true
-        haskell: true
-        large-packages: true
-        docker-images: true
-        swap-storage: true
-        
-    - name: free disk space
-      run: |
-        sudo swapoff -a
-        sudo rm -f /swapfile
-        sudo apt clean
-        df -h
  
     - name: Initialization environment
       id: init
@@ -337,20 +320,20 @@ jobs:
     - name: Download armvirt Firmware
       id: download
       run: |
-        FIRMWARE_PATH=openwrt/bin/targets/armvirt/64
+        FIRMWARE_PATH=workdir/openwrt/bin/targets/armsr/armv8
         [ -d $FIRMWARE_PATH ] || mkdir -p $FIRMWARE_PATH
         cd $FIRMWARE_PATH
         wget -q $(curl -s "https://api.github.com/repos/$GITHUB_REPOSITORY/releases" | grep "$FIRMWARE_TAG.*rootfs.tar.gz" | awk -F '"' '{print $4}')
         echo "status=success" >> $GITHUB_OUTPUT
         echo "DATE=$(date +"%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV
         echo "DATE1=$(date +"%y.%m.%d")" >> $GITHUB_ENV
-          
+
     - name: Package OpenWrt Firmware
       uses: unifreq/openwrt_packit@master
       if: ${{ steps.download.outputs.status }} == 'success' && !cancelled()
       env:
-        OPENWRT_ARMSR: workdir/openwrt/bin/targets/*/*/*rootfs.tar.gz
-        PACKAGE_SOC: all
+        OPENWRT_ARMSR: workdir/openwrt/bin/targets/armsr/armv8/openwrt-armvirt-64-generic-rootfs.tar.gz
+        PACKAGE_SOC: e52c
         WHOAMI: yasui
         KERNEL_VERSION_NAME: 6.12.29
         KERNEL_AUTO_LATEST: true
@@ -393,4 +376,6 @@ jobs:
           - ${{ env.COMMIT_AUTHOR }}
           - ${{ env.COMMIT_DATE }}
           - ${{ env.COMMIT_MESSAGE }}
-          - ${{ env.COMMIT_HASH }}
+          - ${{ env.COMMIT_HASH }}   
+
+ 
